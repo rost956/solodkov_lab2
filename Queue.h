@@ -3,6 +3,8 @@
 struct LNode {
 	Price* price;
 	LNode* next;
+	LNode(Price* newprice) : price(newprice), next(nullptr) {}
+	LNode() : price(new Price("a", "a", 0)), next(nullptr) {}
 };
 
 class Queue {
@@ -15,4 +17,7 @@ public:
 	void print() const;
 	LNode* getHead() { return head; }
 	void setHead(LNode* newHead) { head = newHead; }
+	int print_shops(string name);
+	void edit(int number);
+	void delet_e(int number);
 };
