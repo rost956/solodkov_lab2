@@ -9,7 +9,7 @@ void Queue::add(Price* price) {
 	newNode->price->set_name(price->get_name());
 	newNode->price->set_shop_name(price->get_shop_name());
 	int flag1 = 0;
-	string name_insert = price->get_shop_name();
+	string name_insert = price->get_name();
 	if (head == nullptr) {
 		head = newNode;
 	}
@@ -18,7 +18,7 @@ void Queue::add(Price* price) {
 		LNode* previous = current;
 		int index = 0;
 		while (current != nullptr) {
-			string name_now = current->price->get_shop_name();
+			string name_now = current->price->get_name();
 			if (name_insert <= name_now) {
 				current = head;
 				for (int i = 0; i < index; i++) {
@@ -86,7 +86,7 @@ void Queue::print() const{
 	}
 }
 
-int Queue::print_shops(string name) {
+int Queue::print_products(string name) {
 	int cnt = 0;
 	int flag = 0;
 	LNode* current = head;
@@ -96,18 +96,19 @@ int Queue::print_shops(string name) {
 	}
 	
 	while (current != nullptr) {
-		if (current->price->get_shop_name() == name) {
-			if (flag == 0) { cout << "В магазине " << name << " продаются следующие товары:" << endl; flag = 1; }
+		if (current->price->get_name() == name) {
+			if (flag == 0) { cout << "Найдены следующие товары по запросу " << name << endl; flag = 1; }
 			cnt++;
 			cout << "-----------------" << endl;
-			cout << "Название товара: " << current->price->get_name() << endl;
+			cout << "Название магазина: " << current->price->get_shop_name() << endl;
 			cout << "Стоимость: " << current->price->get_cost() << " руб." << endl;
 			
 			}
 		current = current->next;
 	}
-	if (cnt == 0) { cout << "Магазина " << name << " в списке нет" << endl; }
+	if (cnt == 0) { cout << "Товаров " << name << " в списке нет" << endl; }
 }
+
 void Queue::edit(int number) {
 	int cnt = 0;
 	int flag = 0;
@@ -141,6 +142,7 @@ void Queue::edit(int number) {
 			current->price->set_name(input);
 			cout << "Измененная запись: " << endl;
 			current->price->print();
+			flag = 1;
 			system("pause");
 			system("cls");
 			break;
@@ -152,10 +154,10 @@ void Queue::edit(int number) {
 			current->price->print();
 			system("pause");
 			system("cls");
-			flag = 1;
+			
 			break;
 		case 3:
-			cout << "Введите новое название магазина: ";
+			cout << "Введите новую стоимость: ";
 			cin >> input_int;
 			current->price->set_cost(input_int);
 			cout << "Измененная запись: " << endl;

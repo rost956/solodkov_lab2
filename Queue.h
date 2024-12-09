@@ -17,7 +17,7 @@ public:
 	void print() const;
 	LNode* getHead() { return head; }
 	void setHead(LNode* newHead) { head = newHead; }
-	int print_shops(string name);
+	int print_products(string name);
 	void edit(int number);
 	void delet_e(int number);
 };
